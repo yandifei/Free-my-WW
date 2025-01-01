@@ -1,9 +1,15 @@
 # Free my WW(解放我的鸣潮)
+## 用户说明
 ***禁止倒卖，禁止倒卖，禁止倒卖！***
 禁止以任何形式倒卖该程序、源码，包括但不限于以所谓信息差的方式挂到闲鱼等平台售卖。
 1. 倒卖谋利的行为有可能引起官方的注意，到时候封号了，你的买家找你算账你完蛋了。无论是按键精灵官方的协议、开源协议都强调了作者免责。买家购买使用封号后，即使购买界面写明了拍卖后不负责，倒卖者也要付首要责任。
 2. 鸣潮更新速度快，脚本第二天可能就用不了了。
 3. 脚本迭代速度快，新功能添加和bug修复时需要迭代。
+
+[点击下载](https://github.com/yandifei/Free-my-WW/archive/refs/heads/main.zip)，下载完成后直接解压即可，exe外其他文件都没有用，直接删除就好了，打开exe后会有ini后缀的文件，使用来保存你的设置的，删除后你之前在脚本保存的选项就会清空回归默认状态
+
+功能自己去探索测试吧，剩下不懂的进[QQ群:734823522](https://qm.qq.com/q/Nyz4t2DEMW)问吧，别跳脸官方，别跳脸官方，别跳脸官方！！！
+
 
 ## 免责声明
 
@@ -20,29 +26,21 @@
 ***结语：***
 我知道Free my WW一定会触犯某些人的利益，如不使用这类辅助器的工作室，以及手工代打的up等。此脚本的最初目的本来就是解放双手，避免重复性的工作，对得起脚本Script的称呼，也对得起最初需要他的用户
 ***
-
-
 ## 脚本界面和功能展示
 实时反馈界面
-![实时反馈界面](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/1.png?raw=true)
+![alt text](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/1.png?raw=true)
 无音区设置
-![无音区设置](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/2.png?raw=true)
+![alt text](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/2.png?raw=true)
 4C声骇脚本
-![4C声骇脚本](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/3.png?raw=true)
+![alt text](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/3.png?raw=true)
 日常领取
-![日常领取](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/4.png?raw=true)
+![alt text](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/4.png?raw=true)
 高级设置
-![高级设置](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/5.png?raw=true)
+![alt text](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/5.png?raw=true)
 热键修改
 ![alt text](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/6.png?raw=true)
 常见问题
 ![alt text](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/7.png?raw=true)
-
-***
-## 用户说明
-[点击下载](https://github.com/yandifei/Free-my-WW/archive/refs/heads/main.zip)，下载完成后直接解压即可，exe外其他文件都没有用，直接删除就好了，打开exe后会有ini后缀的文件，使用来保存你的设置的，删除后你之前在脚本保存的选项就会清空回归默认状态
-
-功能自己去探索测试吧，剩下不懂的进[QQ群:734823522](https://qm.qq.com/q/Nyz4t2DEMW)问吧，别跳脸官方，别跳脸官方，别跳脸官方！！！
 
 ## 脚本制作说明
 脚本全部源码是由本人制作，未借鉴其他任何的up源码（我也找不到其他用按键精灵写的鸣潮脚本源码）。
