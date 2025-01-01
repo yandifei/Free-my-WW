@@ -23,7 +23,22 @@
 
 
 ## 脚本界面和功能展示
+实时反馈界面
+![实时反馈界面](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/1.png?raw=true)
+无音区设置
+![无音区设置](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/2.png?raw=true)
+4C声骇脚本
+![4C声骇脚本](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/3.png?raw=true)
+日常领取
+![日常领取](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/4.png?raw=true)
+高级设置
+![高级设置](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/5.png?raw=true)
+热键修改
+![alt text](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/6.png?raw=true)
+常见问题
+![alt text](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/7.png?raw=true)
 
+***
 ## 用户说明
 [点击下载](https://github.com/yandifei/Free-my-WW/archive/refs/heads/main.zip)，下载完成后直接解压即可，exe外其他文件都没有用，直接删除就好了，打开exe后会有ini后缀的文件，使用来保存你的设置的，删除后你之前在脚本保存的选项就会清空回归默认状态
 
