@@ -1,5 +1,5 @@
 # UI业务逻辑撰写
-from logic import Ui_Form   # 导入UI模块
+from UI_code import Ui_Form   # 导入UI模块
 from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget
 import sys
 
