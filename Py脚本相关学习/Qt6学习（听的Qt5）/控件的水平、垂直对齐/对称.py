@@ -13,7 +13,8 @@ import sys
 
 # 移动窗口到屏幕中心
 class MoveToScreenCenter:
-    def __init__(self, win):
+    def __init__(self):
+        super().__init__()
         screens = QGuiApplication.screens()  # 创建屏幕的列表实例
         center_x = screens[0].availableGeometry().center().x()    # 获得第一个屏幕
         center_y = screens[0].availableGeometry().center().y()
@@ -71,7 +72,7 @@ if __name__ == '__main__':
 
     app = QApplication(sys.argv)    # 设置事件循环程序开始
     win = MyWindow()    # 调用创建窗口的类
-    moveto_screen_center = MoveToScreenCenter(win)  # 调用移动到屏幕中心的实例
+    moveto_screen_center = MoveToScreenCenter()  # 调用移动到屏幕中心的实例
 
 
     win.show()  # 显示窗口
