@@ -1,5 +1,5 @@
 python（黑马那边学完了，基础语法都有）没有讲GUI的应用开发
-GUI界面开发
+GUI界面开发，Qt基础学完了
 java
 计算机网络（为了kali做准备），其实我想直接学kali
 Liunx（听说kali就是Liunx的魔改版）

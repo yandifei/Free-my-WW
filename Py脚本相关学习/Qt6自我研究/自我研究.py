@@ -18,7 +18,7 @@ class FreeMyWW:
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     app.setWindowIcon(QIcon("Load_Pic2.png"))    # 设置窗口图标
-    # self.win.QPixmap("Load_Pic.png")  # 替换为你的图标路径
+    # self.win.QPixmap("Load_Pic.bmp")  # 替换为你的图标路径
     free_my_ww = FreeMyWW()
     free_my_ww.win.show()
 
