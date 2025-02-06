@@ -1,5 +1,5 @@
 # Free my WW(解放我的鸣潮)按键精灵版
-
+这个版本的仓库已经转到![Free-my-WW(oldscript_and_mdPic)仓库下了](https://github.com/yandifei/Free-my-WW_oldscript_and_mdPic.git),[点击跳转](https://github.com/yandifei/Free-my-WW_oldscript_and_mdPic.git)
 这一篇文章是2.0版本之前通宵撰写的，但是目前意义不大了，因为脚本几乎报废，我没有去维护
 直接去转python了，带着我写过的原神、铁道、鸣潮脚本的经验和目前的编程技术去python
 如果有人看到这篇文章且是按键精灵脚本作者，可以学习里面的脚本思想（3D大世界游戏），写了这么多脚本，接了这么多单，却不及这个脚本之用心。
@@ -34,19 +34,19 @@
 ***
 ## 脚本界面和功能展示
 实时反馈界面
-![alt text](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/1.png?raw=true)
+![alt text](https://github.com/yandifei/Free-my-WW_md_Pic/blob/main/%E6%8C%89%E9%94%AE%E7%B2%BE%E7%81%B5%E9%B8%A3%E6%BD%AE%E8%84%9A%E6%9C%AC%E7%9A%84%E5%9B%BE%E7%89%87/1.png?raw=true)
 无音区设置
-![alt text](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/2.png?raw=true)
+![alt text](https://github.com/yandifei/Free-my-WW_md_Pic/blob/main/%E6%8C%89%E9%94%AE%E7%B2%BE%E7%81%B5%E9%B8%A3%E6%BD%AE%E8%84%9A%E6%9C%AC%E7%9A%84%E5%9B%BE%E7%89%87/2.png?raw=true)
 4C声骇脚本
-![alt text](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/3.png?raw=true)
+![alt text](https://github.com/yandifei/Free-my-WW_oldscript_and_mdPic/blob/main/%E6%8C%89%E9%94%AE%E7%B2%BE%E7%81%B5%E9%B8%A3%E6%BD%AE%E8%84%9A%E6%9C%AC%E7%9A%84%E5%9B%BE%E7%89%87/3.png?raw=true)
 日常领取
-![alt text](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/4.png?raw=true)
+![alt text](https://github.com/yandifei/Free-my-WW_oldscript_and_mdPic/blob/main/%E6%8C%89%E9%94%AE%E7%B2%BE%E7%81%B5%E9%B8%A3%E6%BD%AE%E8%84%9A%E6%9C%AC%E7%9A%84%E5%9B%BE%E7%89%87/4.png?raw=true)
 高级设置
-![alt text](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/5.png?raw=true)
+![alt text](https://github.com/yandifei/Free-my-WW_oldscript_and_mdPic/blob/main/%E6%8C%89%E9%94%AE%E7%B2%BE%E7%81%B5%E9%B8%A3%E6%BD%AE%E8%84%9A%E6%9C%AC%E7%9A%84%E5%9B%BE%E7%89%87/5.png?raw=true)
 热键修改
-![alt text](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/6.png?raw=true)
+![alt text](https://github.com/yandifei/Free-my-WW_oldscript_and_mdPic/blob/main/%E6%8C%89%E9%94%AE%E7%B2%BE%E7%81%B5%E9%B8%A3%E6%BD%AE%E8%84%9A%E6%9C%AC%E7%9A%84%E5%9B%BE%E7%89%87/6.png?raw=true)
 常见问题
-![alt text](https://github.com/yandifei/Free-my-WW/blob/main/%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E5%92%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/7.png?raw=true)
+![alt text](https://github.com/yandifei/Free-my-WW_oldscript_and_mdPic/blob/main/%E6%8C%89%E9%94%AE%E7%B2%BE%E7%81%B5%E9%B8%A3%E6%BD%AE%E8%84%9A%E6%9C%AC%E7%9A%84%E5%9B%BE%E7%89%87/7.png?raw=true)
 
 ## 脚本制作说明
 脚本全部源码是由本人制作，未借鉴其他任何的up源码（我也找不到其他用按键精灵写的鸣潮脚本源码）。
