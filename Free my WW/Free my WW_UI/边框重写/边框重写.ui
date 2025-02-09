@@ -11,13 +11,16 @@
    </rect>
   </property>
   <property name="mouseTracking">
-   <bool>false</bool>
+   <bool>true</bool>
   </property>
   <property name="tabletTracking">
-   <bool>false</bool>
+   <bool>true</bool>
   </property>
   <property name="contextMenuPolicy">
    <enum>Qt::DefaultContextMenu</enum>
+  </property>
+  <property name="acceptDrops">
+   <bool>true</bool>
   </property>
   <property name="windowTitle">
    <string notr="true">Free my WW</string>
