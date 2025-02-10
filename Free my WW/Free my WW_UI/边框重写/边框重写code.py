@@ -93,6 +93,6 @@ class WinShow(QWidget):
 
 if __name__ == '__main__':
     Free_my_WW_app = QApplication(sys.argv)  # 管理控制事件流和设置
-    Free_my_WW = WinShow("./边框重写.py")   # 创建实例对象
+    Free_my_WW = WinShow("./边框重写.ui")   # 创建实例对象
     sys.exit(Free_my_WW_app.exec()) # 安全退出界面任务
 
