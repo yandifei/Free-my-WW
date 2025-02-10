@@ -11,10 +11,13 @@
    </rect>
   </property>
   <property name="mouseTracking">
-   <bool>true</bool>
+   <bool>false</bool>
   </property>
   <property name="tabletTracking">
    <bool>true</bool>
+  </property>
+  <property name="focusPolicy">
+   <enum>Qt::NoFocus</enum>
   </property>
   <property name="contextMenuPolicy">
    <enum>Qt::DefaultContextMenu</enum>
@@ -25,6 +28,111 @@
   <property name="windowTitle">
    <string notr="true">Free my WW</string>
   </property>
+  <layout class="QVBoxLayout" name="GlobleLayout" stretch="1,20">
+   <property name="leftMargin">
+    <number>9</number>
+   </property>
+   <item>
+    <layout class="QHBoxLayout" name="LabelLayout">
+     <item>
+      <widget class="QLabel" name="LabelPic">
+       <property name="text">
+        <string>图标</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="SoftwareName">
+       <property name="text">
+        <string>软件名字版本号</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="TabelSpace">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="HideToWindow">
+       <property name="text">
+        <string>完全隐藏</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="MinToSys">
+       <property name="text">
+        <string>系统托盘</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Min">
+       <property name="text">
+        <string>最小化</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="MaxOrRestore">
+       <property name="text">
+        <string>最大化/恢复</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Close">
+       <property name="text">
+        <string>关闭</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="MainLayout">
+     <item>
+      <widget class="QTabWidget" name="tabWidget">
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="tab">
+        <attribute name="title">
+         <string>Tab 1</string>
+        </attribute>
+        <widget class="QLabel" name="label">
+         <property name="geometry">
+          <rect>
+           <x>300</x>
+           <y>150</y>
+           <width>631</width>
+           <height>291</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>你好</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tab_2">
+        <attribute name="title">
+         <string>Tab 2</string>
+        </attribute>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>
