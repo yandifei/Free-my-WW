@@ -29,22 +29,51 @@
    <string notr="true">Free my WW</string>
   </property>
   <layout class="QVBoxLayout" name="GlobleLayout" stretch="1,20">
+   <property name="spacing">
+    <number>0</number>
+   </property>
    <property name="leftMargin">
-    <number>9</number>
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
    </property>
    <item>
     <layout class="QHBoxLayout" name="LabelLayout">
+     <property name="leftMargin">
+      <number>9</number>
+     </property>
      <item>
       <widget class="QLabel" name="LabelPic">
        <property name="text">
-        <string>图标</string>
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap>../UI窗口控件图标/鸣潮/32X32.ico</pixmap>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QLabel" name="SoftwareName">
+       <property name="font">
+        <font>
+         <family>Consolas</family>
+         <pointsize>14</pointsize>
+         <italic>false</italic>
+         <bold>true</bold>
+         <underline>false</underline>
+         <strikeout>false</strikeout>
+         <kerning>true</kerning>
+        </font>
+       </property>
        <property name="text">
-        <string>软件名字版本号</string>
+        <string>Free my WW 1.0.0</string>
        </property>
       </widget>
      </item>
@@ -63,36 +92,107 @@
      </item>
      <item>
       <widget class="QPushButton" name="HideToWindow">
-       <property name="text">
+       <property name="toolTip">
         <string>完全隐藏</string>
+       </property>
+       <property name="whatsThis">
+        <string/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../UI窗口控件图标/标题栏图标/chevrons-down.png</normaloff>../UI窗口控件图标/标题栏图标/chevrons-down.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>45</width>
+         <height>30</height>
+        </size>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="MinToSys">
-       <property name="text">
+       <property name="toolTip">
         <string>系统托盘</string>
+       </property>
+       <property name="statusTip">
+        <string/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../UI窗口控件图标/标题栏图标/chevron-down.png</normaloff>../UI窗口控件图标/标题栏图标/chevron-down.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>45</width>
+         <height>30</height>
+        </size>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="Min">
-       <property name="text">
+       <property name="toolTip">
         <string>最小化</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../UI窗口控件图标/标题栏图标/remove.png</normaloff>../UI窗口控件图标/标题栏图标/remove.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>45</width>
+         <height>30</height>
+        </size>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="MaxOrRestore">
-       <property name="text">
+       <property name="toolTip">
         <string>最大化/恢复</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../UI窗口控件图标/标题栏图标/maximise.png</normaloff>../UI窗口控件图标/标题栏图标/maximise.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>45</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="autoRepeat">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="Close">
-       <property name="text">
+       <property name="toolTip">
         <string>关闭</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../UI窗口控件图标/标题栏图标/cancel.png</normaloff>../UI窗口控件图标/标题栏图标/cancel.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>45</width>
+         <height>30</height>
+        </size>
        </property>
       </widget>
      </item>
@@ -112,14 +212,43 @@
         <widget class="QLabel" name="label">
          <property name="geometry">
           <rect>
-           <x>300</x>
-           <y>150</y>
+           <x>360</x>
+           <y>180</y>
            <width>631</width>
            <height>291</height>
           </rect>
          </property>
          <property name="text">
           <string>你好</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_2">
+         <property name="geometry">
+          <rect>
+           <x>530</x>
+           <y>380</y>
+           <width>53</width>
+           <height>15</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_3">
+         <property name="geometry">
+          <rect>
+           <x>1030</x>
+           <y>400</y>
+           <width>51</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap>../UI窗口控件图标/标题栏图标/cancel.png</pixmap>
          </property>
         </widget>
        </widget>
