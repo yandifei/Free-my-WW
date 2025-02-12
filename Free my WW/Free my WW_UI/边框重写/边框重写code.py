@@ -21,6 +21,7 @@ class WinShow(QWidget):
         self.current_screen_xy = get_screen_resolution()  # 获得屏幕分辨率率
         self.ui_file_path = ui_file_path  # ui文件路径，后缀名不一定是.ui，转为py也可以
         self.import_ui()    # 创建ui对象，导入ui
+        self.is_max = False # 标记是否最大化
         self.delete_title_bar() # 重写标题栏
         self.move_center_win()  # 确保窗口在屏幕中央
         self.dragging = False  # 初始窗口拖拽为关闭（开启的话会导致鼠标不点击也能拖拽）
@@ -81,8 +82,11 @@ class WinShow(QWidget):
         """双击最大化/恢复"""
         if self.isMaximized():
             self.showNormal()
+            self.setGeometry(self.normal_geometry)  # 恢复到原始几何形状
         else:
             self.showMaximized()
+            # 更新标记
+        self.is_maximized = not self.isMaximized
 
     def top(self):
         """窗口一直置顶，即使切换应用也还是置顶"""
@@ -93,6 +97,6 @@ class WinShow(QWidget):
 
 if __name__ == '__main__':
     Free_my_WW_app = QApplication(sys.argv)  # 管理控制事件流和设置
-    Free_my_WW = WinShow("./边框重写.py")   # 创建实例对象
+    Free_my_WW = WinShow("./边框重写.ui")   # 创建实例对象
     sys.exit(Free_my_WW_app.exec()) # 安全退出界面任务
 

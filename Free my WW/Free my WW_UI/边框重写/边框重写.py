@@ -20,31 +20,132 @@ class Ui_Form(object):
         Form.setAcceptDrops(True)
         Form.setWindowTitle("Free my WW")
         self.GlobleLayout = QtWidgets.QVBoxLayout(Form)
-        self.GlobleLayout.setContentsMargins(9, -1, -1, -1)
+        self.GlobleLayout.setContentsMargins(0, 0, 0, 0)
+        self.GlobleLayout.setSpacing(0)
         self.GlobleLayout.setObjectName("GlobleLayout")
         self.LabelLayout = QtWidgets.QHBoxLayout()
+        self.LabelLayout.setContentsMargins(9, -1, -1, -1)
         self.LabelLayout.setObjectName("LabelLayout")
         self.LabelPic = QtWidgets.QLabel(parent=Form)
+        self.LabelPic.setText("")
+        self.LabelPic.setPixmap(QtGui.QPixmap("../UI窗口控件图标/鸣潮/32X32.ico"))
         self.LabelPic.setObjectName("LabelPic")
         self.LabelLayout.addWidget(self.LabelPic)
         self.SoftwareName = QtWidgets.QLabel(parent=Form)
+        font = QtGui.QFont()
+        font.setFamily("Consolas")
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setItalic(False)
+        font.setUnderline(False)
+        font.setStrikeOut(False)
+        font.setKerning(True)
+        self.SoftwareName.setFont(font)
         self.SoftwareName.setObjectName("SoftwareName")
         self.LabelLayout.addWidget(self.SoftwareName)
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.LabelLayout.addItem(spacerItem)
         self.HideToWindow = QtWidgets.QPushButton(parent=Form)
+        self.HideToWindow.setWhatsThis("")
+        self.HideToWindow.setStyleSheet("QPushButton {\n"
+"    background: transparent;  /* 透明背景 */\n"
+"    border: none;            /* 移除默认边框 */\n"
+"}\n"
+"/* 悬停状态 */\n"
+"QPushButton:hover {\n"
+"    background: rgb(196, 43, 28); /* 轻微高亮 */\n"
+"}\n"
+"/* 按下状态 */\n"
+"QPushButton:pressed {\n"
+"    background: rgb(199, 64, 49);\n"
+"}")
+        self.HideToWindow.setText("")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("../UI窗口控件图标/标题栏图标/chevrons-down.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.HideToWindow.setIcon(icon)
+        self.HideToWindow.setIconSize(QtCore.QSize(45, 30))
         self.HideToWindow.setObjectName("HideToWindow")
         self.LabelLayout.addWidget(self.HideToWindow)
         self.MinToSys = QtWidgets.QPushButton(parent=Form)
+        self.MinToSys.setStatusTip("")
+        self.MinToSys.setStyleSheet("QPushButton {\n"
+"    background: transparent;  /* 透明背景 */\n"
+"    border: none;            /* 移除默认边框 */\n"
+"}\n"
+"/* 悬停状态 */\n"
+"QPushButton:hover {\n"
+"    background: rgb(196, 43, 28); /* 轻微高亮 */\n"
+"}\n"
+"/* 按下状态 */\n"
+"QPushButton:pressed {\n"
+"    background: rgb(199, 64, 49);\n"
+"}")
+        self.MinToSys.setText("")
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap("../UI窗口控件图标/标题栏图标/chevron-down.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.MinToSys.setIcon(icon1)
+        self.MinToSys.setIconSize(QtCore.QSize(45, 30))
         self.MinToSys.setObjectName("MinToSys")
         self.LabelLayout.addWidget(self.MinToSys)
         self.Min = QtWidgets.QPushButton(parent=Form)
+        self.Min.setStyleSheet("QPushButton {\n"
+"    background: transparent;  /* 透明背景 */\n"
+"    border: none;            /* 移除默认边框 */\n"
+"}\n"
+"/* 悬停状态 */\n"
+"QPushButton:hover {\n"
+"    background: rgb(196, 43, 28); /* 轻微高亮 */\n"
+"}\n"
+"/* 按下状态 */\n"
+"QPushButton:pressed {\n"
+"    background: rgb(199, 64, 49);\n"
+"}")
+        self.Min.setText("")
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap("../UI窗口控件图标/标题栏图标/remove.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.Min.setIcon(icon2)
+        self.Min.setIconSize(QtCore.QSize(45, 30))
         self.Min.setObjectName("Min")
         self.LabelLayout.addWidget(self.Min)
         self.MaxOrRestore = QtWidgets.QPushButton(parent=Form)
+        self.MaxOrRestore.setStyleSheet("QPushButton {\n"
+"    background: transparent;  /* 透明背景 */\n"
+"    border: none;            /* 移除默认边框 */\n"
+"}\n"
+"/* 悬停状态 */\n"
+"QPushButton:hover {\n"
+"    background: rgb(196, 43, 28); /* 轻微高亮 */\n"
+"}\n"
+"/* 按下状态 */\n"
+"QPushButton:pressed {\n"
+"    background: rgb(199, 64, 49);\n"
+"}")
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap("../UI窗口控件图标/标题栏图标/maximise.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.MaxOrRestore.setIcon(icon3)
+        self.MaxOrRestore.setIconSize(QtCore.QSize(45, 30))
+        self.MaxOrRestore.setAutoRepeat(False)
         self.MaxOrRestore.setObjectName("MaxOrRestore")
         self.LabelLayout.addWidget(self.MaxOrRestore)
         self.Close = QtWidgets.QPushButton(parent=Form)
+        self.Close.setStyleSheet("QPushButton {\n"
+"    background: transparent;  /* 透明背景 */\n"
+"    border:  transparent;            /* 移除默认边框 */\n"
+"}\n"
+"/* 悬停状态 */\n"
+"QPushButton:hover {\n"
+"    background: rgb(196, 43, 28); /* 轻微高亮 */\n"
+"}\n"
+"/* 按下状态 */\n"
+"QPushButton:pressed {\n"
+"    background: rgb(199, 64, 49);\n"
+"}\n"
+"")
+        self.Close.setText("")
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap("../UI窗口控件图标/标题栏图标/cancel.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.Close.setIcon(icon4)
+        self.Close.setIconSize(QtCore.QSize(45, 30))
         self.Close.setObjectName("Close")
         self.LabelLayout.addWidget(self.Close)
         self.GlobleLayout.addLayout(self.LabelLayout)
@@ -55,8 +156,16 @@ class Ui_Form(object):
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
         self.label = QtWidgets.QLabel(parent=self.tab)
-        self.label.setGeometry(QtCore.QRect(300, 150, 631, 291))
+        self.label.setGeometry(QtCore.QRect(360, 180, 631, 291))
         self.label.setObjectName("label")
+        self.label_2 = QtWidgets.QLabel(parent=self.tab)
+        self.label_2.setGeometry(QtCore.QRect(530, 380, 53, 15))
+        self.label_2.setObjectName("label_2")
+        self.label_3 = QtWidgets.QLabel(parent=self.tab)
+        self.label_3.setGeometry(QtCore.QRect(1030, 400, 51, 51))
+        self.label_3.setText("")
+        self.label_3.setPixmap(QtGui.QPixmap("../UI窗口控件图标/标题栏图标/cancel.png"))
+        self.label_3.setObjectName("label_3")
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
@@ -72,13 +181,13 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        self.LabelPic.setText(_translate("Form", "图标"))
-        self.SoftwareName.setText(_translate("Form", "软件名字版本号"))
-        self.HideToWindow.setText(_translate("Form", "完全隐藏"))
-        self.MinToSys.setText(_translate("Form", "系统托盘"))
-        self.Min.setText(_translate("Form", "最小化"))
-        self.MaxOrRestore.setText(_translate("Form", "最大化/恢复"))
-        self.Close.setText(_translate("Form", "关闭"))
+        self.SoftwareName.setText(_translate("Form", "Free my WW 1.0.0"))
+        self.HideToWindow.setToolTip(_translate("Form", "完全隐藏"))
+        self.MinToSys.setToolTip(_translate("Form", "系统托盘"))
+        self.Min.setToolTip(_translate("Form", "最小化"))
+        self.MaxOrRestore.setToolTip(_translate("Form", "最大化/恢复"))
+        self.Close.setToolTip(_translate("Form", "关闭"))
         self.label.setText(_translate("Form", "你好"))
+        self.label_2.setText(_translate("Form", "TextLabel"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Form", "Tab 1"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Form", "Tab 2"))
