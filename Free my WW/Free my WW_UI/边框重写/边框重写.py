@@ -63,7 +63,7 @@ class Ui_Form(object):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("../UI窗口控件图标/标题栏图标/chevrons-down.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.HideToWindow.setIcon(icon)
-        self.HideToWindow.setIconSize(QtCore.QSize(45, 30))
+        self.HideToWindow.setIconSize(QtCore.QSize(45, 32))
         self.HideToWindow.setObjectName("HideToWindow")
         self.LabelLayout.addWidget(self.HideToWindow)
         self.MinToSys = QtWidgets.QPushButton(parent=Form)
@@ -74,17 +74,17 @@ class Ui_Form(object):
 "}\n"
 "/* 悬停状态 */\n"
 "QPushButton:hover {\n"
-"    background: rgb(196, 43, 28); /* 轻微高亮 */\n"
+"    background: rgb(233, 233, 233); /* 轻微高亮 */\n"
 "}\n"
 "/* 按下状态 */\n"
 "QPushButton:pressed {\n"
-"    background: rgb(199, 64, 49);\n"
+"    background: rgb(213, 213, 213);\n"
 "}")
         self.MinToSys.setText("")
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap("../UI窗口控件图标/标题栏图标/chevron-down.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.MinToSys.setIcon(icon1)
-        self.MinToSys.setIconSize(QtCore.QSize(45, 30))
+        self.MinToSys.setIconSize(QtCore.QSize(45, 32))
         self.MinToSys.setObjectName("MinToSys")
         self.LabelLayout.addWidget(self.MinToSys)
         self.Min = QtWidgets.QPushButton(parent=Form)
@@ -94,17 +94,17 @@ class Ui_Form(object):
 "}\n"
 "/* 悬停状态 */\n"
 "QPushButton:hover {\n"
-"    background: rgb(196, 43, 28); /* 轻微高亮 */\n"
+"    background: rgb(233, 233, 233); /* 轻微高亮 */\n"
 "}\n"
 "/* 按下状态 */\n"
 "QPushButton:pressed {\n"
-"    background: rgb(199, 64, 49);\n"
+"    background: rgb(213, 213, 213);\n"
 "}")
         self.Min.setText("")
         icon2 = QtGui.QIcon()
         icon2.addPixmap(QtGui.QPixmap("../UI窗口控件图标/标题栏图标/remove.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.Min.setIcon(icon2)
-        self.Min.setIconSize(QtCore.QSize(45, 30))
+        self.Min.setIconSize(QtCore.QSize(45, 32))
         self.Min.setObjectName("Min")
         self.LabelLayout.addWidget(self.Min)
         self.MaxOrRestore = QtWidgets.QPushButton(parent=Form)
@@ -114,16 +114,16 @@ class Ui_Form(object):
 "}\n"
 "/* 悬停状态 */\n"
 "QPushButton:hover {\n"
-"    background: rgb(196, 43, 28); /* 轻微高亮 */\n"
+"    background: rgb(233, 233, 233); /* 轻微高亮 */\n"
 "}\n"
 "/* 按下状态 */\n"
 "QPushButton:pressed {\n"
-"    background: rgb(199, 64, 49);\n"
+"    background: rgb(213, 213, 213);\n"
 "}")
         icon3 = QtGui.QIcon()
         icon3.addPixmap(QtGui.QPixmap("../UI窗口控件图标/标题栏图标/maximise.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.MaxOrRestore.setIcon(icon3)
-        self.MaxOrRestore.setIconSize(QtCore.QSize(45, 30))
+        self.MaxOrRestore.setIconSize(QtCore.QSize(45, 32))
         self.MaxOrRestore.setAutoRepeat(False)
         self.MaxOrRestore.setObjectName("MaxOrRestore")
         self.LabelLayout.addWidget(self.MaxOrRestore)
@@ -145,7 +145,7 @@ class Ui_Form(object):
         icon4 = QtGui.QIcon()
         icon4.addPixmap(QtGui.QPixmap("../UI窗口控件图标/标题栏图标/cancel.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.Close.setIcon(icon4)
-        self.Close.setIconSize(QtCore.QSize(45, 30))
+        self.Close.setIconSize(QtCore.QSize(45, 32))
         self.Close.setObjectName("Close")
         self.LabelLayout.addWidget(self.Close)
         self.GlobleLayout.addLayout(self.LabelLayout)
@@ -182,7 +182,7 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         self.SoftwareName.setText(_translate("Form", "Free my WW 1.0.0"))
-        self.HideToWindow.setToolTip(_translate("Form", "完全隐藏"))
+        self.HideToWindow.setToolTip(_translate("Form", "完全隐藏（去任务管理器找）"))
         self.MinToSys.setToolTip(_translate("Form", "系统托盘"))
         self.Min.setToolTip(_translate("Form", "最小化"))
         self.MaxOrRestore.setToolTip(_translate("Form", "最大化/恢复"))
