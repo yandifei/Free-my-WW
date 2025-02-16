@@ -4,7 +4,6 @@ show如果是在自定义类之后则有可能出现未知bug
 在未初始化 GUI 前调用 show()	窗口可能无法正确渲染
 将Form对象的窗口布局器（1个）的类名设置为GlobalLayout，意为全局布局器
 """
-
 # 去掉原来的边框，直接重写
 # 导包
 """ 添加路径导入自定义包
@@ -17,8 +16,8 @@ sys.path.append(package_path)   # 添加路径到系统路径里面
 print(f"{os.getcwd()}\\Free_my_WW_package")
 """
 import sys
-
-sys.path.append("D:\鸣潮脚本\Free-my-WW\Free my WW\Free_my_WW_package")  # 添加路径到系统路径里面
+import os
+sys.path.append(f"{os.getcwd()}\Free_my_WW_package")  # 添加路径到系统路径里面
 
 from PyQt6.QtWidgets import QApplication, QWidget
 from PyQt6.QtCore import Qt, QPoint, QPointF, QRect  # Qt用来干掉边框
@@ -196,48 +195,48 @@ class WinInit(QWidget):
 
         # 窗口边缘缩放
         if not self.resizing[0] and self.resizing[0] > 0:   # 防止贴边恢复是过度启动边缘监测
-            print(self.resizing[0])
+            # print(self.resizing[0])
             return None # 判断是否开启边缘监测
         elif (event.position().x() >= (self.width() - self.win_control_button_size[0]) and
                 event.position().y() <= self.win_control_button_size[1]):  # 判断禁止在窗口控件区域启动缩放（直接使用的话会在最右上角设置一个点为禁止）
             if all(self.win_control_button_size):  # 判断填的禁止领域参数否有效（不能有0和有空格）
-                print(f"到达禁止区域")
+                # print(f"到达禁止区域")
                 self.resizing = False, 0  # 禁止鼠标拖动窗口边缘或角落来调整窗口大小（默认关闭）,存放 0 代表禁止区域
                 self.setCursor(Qt.CursorShape.ArrowCursor)  # 保持光标（把缩放的光标改回默认）
         # 左上角
         elif event.position().x() <= self.edge_size and event.position().y() <= self.edge_size:
-            print("左上角")
+            # print("左上角")
             self.resizing = True, 1  # 禁止鼠标拖动窗口边缘或角落来调整窗口大小（默认关闭）
             self.setCursor(Qt.CursorShape.SizeFDiagCursor)  # 左上
         # 右上角
         elif event.position().x() >= (self.init_win_width - self.edge_size) and event.position().y() <= self.edge_size:
-            print("右上角")
+            # print("右上角")
             self.resizing = True, 2  # 禁止鼠标拖动窗口边缘或角落来调整窗口大小（默认关闭）
             self.setCursor(Qt.CursorShape.SizeBDiagCursor)  # 右上
         # 右下角
         elif event.position().x() >= (self.init_win_width - self.edge_size) and event.position().y() >= (self.init_win_height - self.edge_size):
-            print("右下角")
+            # print("右下角")
             self.resizing = True, 3  # 禁止鼠标拖动窗口边缘或角落来调整窗口大小（默认关闭）
             self.setCursor(Qt.CursorShape.SizeFDiagCursor)  # 右下
         # 左下角
         elif event.position().x() <= self.edge_size and event.position().y() >= (self.init_win_height - self.edge_size):
-            print("左下角")
+            # print("左下角")
             self.resizing = True, 4  # 禁止鼠标拖动窗口边缘或角落来调整窗口大小（默认关闭）
             self.setCursor(Qt.CursorShape.SizeBDiagCursor)  # 左下
         elif event.position().x() <= self.edge_size:  # 左边边缘判定（小于等于默认的10个像素点）
-            print("在左边缘")
+            # print("在左边缘")
             self.resizing = True, 5  # 禁止鼠标拖动窗口边缘或角落来调整窗口大小（默认关闭）,存放 1 代表在左边缘
             self.setCursor(Qt.CursorShape.SizeHorCursor)  # 左
         elif event.position().y() <= self.edge_size:
-            print("在上边缘")
+            # print("在上边缘")
             self.resizing = True, 6  # 禁止鼠标拖动窗口边缘或角落来调整窗口大小（默认关闭）,存放 2 代表在上边缘
             self.setCursor(Qt.CursorShape.SizeVerCursor)  # 下
         elif event.position().x() >= (self.init_win_width - self.edge_size):
-            print("在右边缘")
+            # print("在右边缘")
             self.setCursor(Qt.CursorShape.SizeHorCursor)  # 右
             self.resizing = True, 7  # 禁止鼠标拖动窗口边缘或角落来调整窗口大小（默认关闭）,存放 3 代表在右边缘
         elif event.position().y() >= (self.init_win_height - self.edge_size):
-            print("在下边缘")
+            # print("在下边缘")
             self.setCursor(Qt.CursorShape.SizeVerCursor)  # 下
             self.resizing = True, 8  # 禁止鼠标拖动窗口边缘或角落来调整窗口大小（默认关闭）,存放 4 代表在下边缘
         else:
@@ -303,7 +302,7 @@ if __name__ == '__main__':
     Free_my_WW_app = QApplication(sys.argv)  # 管理控制事件流和设置
     # Free_my_WW_app.setAttribute(Qt.ApplicationAttribute.AA_UseDesktopOpenGL)    # OpenGL加速（图形渲染增强）
     """Free_my_WW_app.setAttribute(Qt.ApplicationAttribute.AA_MouseTracking, True)对每个继承widget的控件都打开鼠标表跟踪"""
-    Free_my_WW = WinInit("./边框重写.py")  # 创建实例对象
+    Free_my_WW = WinInit("./边框重写.ui")  # 创建实例对象
 
     # Free_my_WW.window_mouse_pass_through()  # 主窗口鼠标穿透
     # Free_my_WW.top()    # 窗口一直置顶，即使切换应用也还是置顶
