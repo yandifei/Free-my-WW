@@ -21,7 +21,7 @@ import sys
 sys.path.append("D:\鸣潮脚本\Free-my-WW\Free my WW\Free_my_WW_package")  # 添加路径到系统路径里面
 
 from PyQt6.QtWidgets import QApplication, QWidget
-from PyQt6.QtCore import Qt, QPoint  # Qt用来干掉边框
+from PyQt6.QtCore import Qt, QPoint, QPointF, QRect  # Qt用来干掉边框
 from PyQt6 import uic
 # 自己的包
 from Free_my_WW_package.SysInformation import *
@@ -39,10 +39,10 @@ class WinInit(QWidget):
     这个窗口经过了处理，去掉了标题栏（因此最大化、最小化、关闭、拖拽都没了）
     参数：
     ui_file_path ： ui文件路径，可以是ui转py的文件
-    edge_size ： 设置边缘大小，默认为15像素点
+    edge_size ： 设置边缘大小，默认为10像素点
     win_control_button_size : 元组，全部窗口控制按钮放在一起后的宽度（x）高度（y）
     """
-    def __init__(self, ui_file_path, edge_size=15,win_control_button_size = (220,30)):
+    def __init__(self, ui_file_path, edge_size=10,win_control_button_size = (220,30)):
         super().__init__()  # 习惯
         self.ui_file_path = ui_file_path  # ui文件路径，后缀名不一定是.ui，转为py也可以
         self.ui = None  # 为了后面创建实例对象用的
@@ -59,9 +59,11 @@ class WinInit(QWidget):
         self.setStyleSheet(append_style)  # 追加样式
         self.screen_half = int(self.current_screen_xy[0] / 2), int(self.current_screen_xy[1] / 2)  # 可用一半的屏幕（影响move_center_win）
         self.move_center_win()  # 确保窗口在屏幕中央,这个位置不能换到分辨率初始化前
-        self.last_geometry = self.geometry()  # 记录上一次的位置和大小
+        self.original_geometry = self.geometry()  # 记录上最开始的位置和大小（不能放到鼠标事件按里面刷新，要在move_center_win()后面）
         self.init_win_width = self.width()  # 记录最开始默认的窗口长度（后续记录用户拉条缩放改变的大小）
         self.init_win_height = self.height()  # 记录最开始默认的窗口高度（后续记录用户拉条缩放改变的大小）
+        # self.pos_and_size = self.geometry() # 记录位置和大小（窗口移动使用）
+        pass    # 把self.init_win_width、self.init_win_height替换为self.pos_and_size
         self.mouse_max_x = self.current_screen_xy[4] - 1  # 鼠标最大x位置
         self.mouse_max_y = self.current_screen_xy[5] - 1  # 鼠标最大y位置
         self.offset = QPoint()  # 获取鼠标移动的像素点，offset（消耗）
@@ -71,8 +73,11 @@ class WinInit(QWidget):
         # self.setMouseTracking(True)  # 启用鼠标追踪(默认关闭，用来监测鼠标是否在边缘的)
         """拖拽缩放重写"""
         self.win_control_button_size = win_control_button_size  # 记录窗口控制全部按钮的大小，用来避免在该区域打开拉伸缩放
-        self.edge_size = edge_size  # 默认15个像素点为边缘
+        self.edge_size = edge_size  # 默认10个像素点为边缘
         self.resizing = False, None   # 禁止鼠标拖动窗口边缘或角落来调整窗口大小（默认关闭）,没有存放任何缩放策略
+        self.last_mouse = QPoint(0,0)  # 用来记录窗口拖动的上次坐标（方便计算轨迹变化量）    # 用来记录窗口拖动的上次坐标（方便计算轨迹变化量）
+        self.current_mouse = QPoint(0,0)    # 记录单前鼠标位置（为了计算）
+        self.resizing_value = QPoint(0,0)   # 用来记录鼠标每次移动的变化量（偏移量=当前坐标-上次坐标）
 
     def import_ui(self):
         """判断ui是ui文件还是ui转py文件"""
@@ -89,18 +94,20 @@ class WinInit(QWidget):
         else:
             raise NameError("输入入的既不是ui文件，也不是ui转py文件")
 
-    def move_center_win(self):
+    def move_center_win(self,report=True):
         """把窗口移动到屏幕中央
         计算主显示器屏幕中央的逻辑分辨率
         获得计算窗口大小并除2
         计算窗口移动位置
         把窗口移动到指定位置，移动后窗口显示在屏幕中央
+        参数： report，是否进行用户反馈（默认打开True）
         """
-        sys_feedback(f"主显示器的逻辑分辨率: {self.current_screen_xy[0]}X{self.current_screen_xy[1]}")  # 打印当前屏幕的分辨率吧
-        sys_feedback(f"主显示器屏幕的中心坐标:{self.screen_half[0]},{self.screen_half[1]}")  # 打印当前屏幕中心
+        if report:
+            sys_feedback(f"主显示器的逻辑分辨率: {self.current_screen_xy[0]}X{self.current_screen_xy[1]}")  # 打印当前屏幕的分辨率吧
+            sys_feedback(f"主显示器屏幕的中心坐标:{self.screen_half[0]},{self.screen_half[1]}")  # 打印当前屏幕中心
         move_x = int(self.screen_half[0] - (self.width() / 2))
         move_y = int(self.screen_half[1] - (self.height() / 2))
-        progress_feedback(f"Free my WW 移动坐标：{move_x},{move_y}")
+        if report: progress_feedback(f"Free my WW 移动坐标：{move_x},{move_y}")
         self.move(move_x, move_y)  # 把窗口移动到屏幕正中央
 
     def delete_title_bar(self):
@@ -117,44 +124,76 @@ class WinInit(QWidget):
 
     def mousePressEvent(self, event):
         """重写鼠标事件（在按下鼠标开启拖拽功能并记录鼠标偏移量），限制光标"""
+        # if event.button() == Qt.MouseButton.RightButton:
+            # 左边
+            # self.setGeometry(self.geometry().x() - 10, self.geometry().y(), self.geometry().width() + 10,
+            #                  self.geometry().height())
+            # 上边
+            # self.setGeometry(self.geometry().x(), self.geometry().y() -10, self.geometry().width(),
+            #                  self.geometry().height() + 10)
+            # 右边
+            # self.resize(self.width() + 10,self.height())    # 右扩展
+            # 下边
+            # self.resize(self.width(),self.height() + 10)    # 下扩展
         if event.button() == Qt.MouseButton.LeftButton: # 确保是鼠标左键按下的
-            if self.resizing[0]:    # 启动鼠标边缘缩放
-
             limit_cursor(report=False)  # 调用函数对光标范围进行限制（防止窗口过度滑到任务栏下面）
             # 记录鼠标全局位置与窗口位置的偏移量（不要把event.position()弄进去，如果开了全局监测就凉了）
             self.offset = event.globalPosition().toPoint() - self.pos()
             # print(f"鼠标相对窗口的坐标：{self.offset}，敏感|窗口内的相对坐标{event.position()},浮点数")
             # print(f"鼠标在屏幕上的位置:{event.globalPosition().toPoint()}")  # 这个就是鼠标在屏幕上的位置
             # print(f"窗口坐标:{self.pos()}")
-            self.dragging = True
+            self.dragging = True    # 边缘和拖拽都要开启
 
     def mouseMoveEvent(self, event):
-        # 点击一次就扩大位置
-        # if event.button() == Qt.MouseButton.RightButton:
-        # self.setGeometry(self.geometry().x(), self.geometry().y(), self.init_win_width + 10,
-        #                  self.init_win_height + 10)
-        # self.init_win_width = self.width()  # 更新初始窗口大小
-        # self.init_win_height = self.height()  # 更新初始窗口大小
-        # self.setGeometry(self.geometry().x() - 10, self.geometry().y() - 10, self.init_win_width + 10,
-        #                  self.init_win_height + 10)
-        # self.init_win_width = self.width()  # 更新初始窗口大小
-        # self.init_win_height = self.height()  # 更新初始窗口大小
+        """时刻计算鼠标偏移量(只有开启边缘拉伸才触发)"""
+        self.current_mouse = event.pos()  # 获取当前鼠标位置
+        if not self.last_mouse.isNull() and self.resizing[0]:  # not self.last_mouse.isNull()跳过第一次无效的计算
+            # 计算偏移量：当前坐标 - 上一次坐标
+            self.resizing_value = self.current_mouse - self.last_mouse
+        self.last_mouse = self.current_mouse  # 更新最后位置
         """根据当前鼠标位置计算窗口新位置"""
+        # 边缘拖动改变位置
+        if self.resizing[0] and self.dragging:    # 其实这里我想写if self.resizing:的
+            # 左上角扩大
+            # if self.resizing[1] == 1:   # 左上角扩大
+            # 右上角扩大
+            # if self.resizing[1] == 2:   # 右上角扩大
+            # 右下角扩大
+            if self.resizing[1] == 3:   # 右下角扩大
+                self.resize(self.width() + self.resizing_value.x(), self.height() + self.resizing_value.y())  # 右下角扩大
+            # 左上角扩大
+            # if self.resizing[1] == 4:   # 左上角扩大
+            # 左边扩大
+            if self.resizing[1] == 5:  # 左边扩大
+                self.setGeometry(QRect(self.geometry().x() - 10, self.geometry().y(), self.geometry().width() + 10,
+                                 self.geometry().height()))
+            # 右边扩大
+            if self.resizing[1] == 7:    # 右边扩大
+                 self.resize(self.width() + self.resizing_value.x(), self.height())  # 右扩展
+            # 下边扩大
+            elif self.resizing[1] == 8:   # 下边扩大
+                self.resize(self.width(),self.height() + self.resizing_value.y())    # 下扩展
+            self.init_win_width = self.width()  # 更新初始窗口大小（窗口扩大缩小后都要）
+            self.init_win_height = self.height()  # 更新初始窗口大小（窗口扩大缩小后都要）
+            return None # 必须加,避免拉伸与拖拽冲突
         mouse_current_x = event.globalPosition().toPoint().x()  # 刷新鼠标x位置，仅对这个函数有效，别的未测试
         mouse_current_y = event.globalPosition().toPoint().y()  # 刷新鼠标y位置，仅对这个函数有效，别的未测试
         # 如果当前鼠标位置低于任务栏则
         if self.snap_layouts and self.dragging:  # 检测是否开启了窗口贴边功能，一定要判断拖拽，因为开启了全局拖拽
             self.resize(self.init_win_width,self.init_win_height)
-            self.move(mouse_current_x - int(self.width() / 2), mouse_current_y - 16)   # 窗口回到鼠标处
+            self.move(mouse_current_x - int(self.width() / 2), mouse_current_y - self.edge_size-5)   # 窗口回到鼠标处
             self.snap_layouts = False  # 还原窗口，标志还原
             self.offset = event.globalPosition().toPoint() - self.pos()  # 重新记录上次的鼠标位置
-        elif self.dragging:  # 启动拖拽
+            return None  # 不继续往下执行
+        elif self.dragging:  # 启动拖拽(拖动缩放不在的死后才开)
             self.move(event.globalPosition().toPoint() - self.offset)
-        self.last_geometry = self.geometry()  # 记录上一次的位置和大小
+            return None # 不继续往下执行
+
         # 窗口边缘缩放
-        # print(f"鼠标在窗口内的相对坐标{event.position().x(), event.position().y()}")
-        # print(f"{self.init_win_width - self.win_control_button_size[0],self.win_control_button_size[1]}")
-        if (event.position().x() >= (self.init_win_width - self.win_control_button_size[0]) and
+        if not self.resizing[0] and self.resizing[0] > 0:   # 防止贴边恢复是过度启动边缘监测
+            print(self.resizing[0])
+            return None # 判断是否开启边缘监测
+        elif (event.position().x() >= (self.init_win_width - self.win_control_button_size[0]) and
                 event.position().y() <= self.win_control_button_size[1]):  # 判断禁止在窗口控件区域启动缩放
             print(f"到达禁止区域")
             self.resizing = False, 0  # 禁止鼠标拖动窗口边缘或角落来调整窗口大小（默认关闭）,存放 0 代表禁止区域
@@ -162,35 +201,39 @@ class WinInit(QWidget):
         # 左上角
         elif event.position().x() <= self.edge_size and event.position().y() <= self.edge_size:
             print("左上角")
+            self.resizing = True, 1  # 禁止鼠标拖动窗口边缘或角落来调整窗口大小（默认关闭）
             self.setCursor(Qt.CursorShape.SizeFDiagCursor)  # 左上
         # 右上角
         elif event.position().x() >= (self.init_win_width - self.edge_size) and event.position().y() <= self.edge_size:
             print("右上角")
+            self.resizing = True, 2  # 禁止鼠标拖动窗口边缘或角落来调整窗口大小（默认关闭）
             self.setCursor(Qt.CursorShape.SizeBDiagCursor)  # 右上
         # 右下角
         elif event.position().x() >= (self.init_win_width - self.edge_size) and event.position().y() >= (self.init_win_height - self.edge_size):
             print("右下角")
+            self.resizing = True, 3  # 禁止鼠标拖动窗口边缘或角落来调整窗口大小（默认关闭）
             self.setCursor(Qt.CursorShape.SizeFDiagCursor)  # 右下
         # 左下角
         elif event.position().x() <= self.edge_size and event.position().y() >= (self.init_win_height - self.edge_size):
             print("左下角")
+            self.resizing = True, 4  # 禁止鼠标拖动窗口边缘或角落来调整窗口大小（默认关闭）
             self.setCursor(Qt.CursorShape.SizeBDiagCursor)  # 左下
-        elif event.position().x() <= self.edge_size:  # 左边边缘判定（小于等于默认的15个像素点）
+        elif event.position().x() <= self.edge_size:  # 左边边缘判定（小于等于默认的10个像素点）
             print("在左边缘")
-            self.resizing = True, 1  # 禁止鼠标拖动窗口边缘或角落来调整窗口大小（默认关闭）,存放 1 代表在左边缘
+            self.resizing = True, 5  # 禁止鼠标拖动窗口边缘或角落来调整窗口大小（默认关闭）,存放 1 代表在左边缘
             self.setCursor(Qt.CursorShape.SizeHorCursor)  # 左
         elif event.position().y() <= self.edge_size:
             print("在上边缘")
-            self.resizing = True, 2  # 禁止鼠标拖动窗口边缘或角落来调整窗口大小（默认关闭）,存放 2 代表在上边缘
+            self.resizing = True, 6  # 禁止鼠标拖动窗口边缘或角落来调整窗口大小（默认关闭）,存放 2 代表在上边缘
             self.setCursor(Qt.CursorShape.SizeVerCursor)  # 下
         elif event.position().x() >= (self.init_win_width - self.edge_size):
             print("在右边缘")
             self.setCursor(Qt.CursorShape.SizeHorCursor)  # 右
-            self.resizing = True, 3  # 禁止鼠标拖动窗口边缘或角落来调整窗口大小（默认关闭）,存放 3 代表在右边缘
+            self.resizing = True, 7  # 禁止鼠标拖动窗口边缘或角落来调整窗口大小（默认关闭）,存放 3 代表在右边缘
         elif event.position().y() >= (self.init_win_height - self.edge_size):
             print("在下边缘")
             self.setCursor(Qt.CursorShape.SizeVerCursor)  # 下
-            self.resizing = True, 4  # 禁止鼠标拖动窗口边缘或角落来调整窗口大小（默认关闭）,存放 4 代表在下边缘
+            self.resizing = True, 8  # 禁止鼠标拖动窗口边缘或角落来调整窗口大小（默认关闭）,存放 4 代表在下边缘
         else:
             self.setCursor(Qt.CursorShape.ArrowCursor)  # 默认光标
             self.resizing = False, None   # 设为关闭，禁止鼠标拖动窗口边缘或角落来调整窗口大小,没有任何缩放策略
@@ -231,20 +274,25 @@ class WinInit(QWidget):
             self.snap_layouts = True  # 标志开启了窗口贴边功能
         # 鼠标在最底层
         elif event.globalPosition().toPoint().y() == self.mouse_max_y:
-            self.resize(self.init_win_width, self.init_win_height)  # 回到最开始的宽度和高度
-            self.move_center_win()  # 把窗口移动到屏幕中央
+            self.setGeometry(self.original_geometry)    # 回到原始的位置和大小
             # 这里就没有必要加窗口贴边开启的标志了，因为这是还原
+
+
 
     def mouseDoubleClickEvent(self, event):
         """双击最大化/恢复"""
         if event.button() == Qt.MouseButton.LeftButton:   # 判断是不是鼠标左键双击的
-            if self.snap_layouts:  # 已经开启最大化，要变为开始大样子
-                # 回复原来的位置，但是宽度和高度是初始的和自己定义的
-                self.setGeometry(self.last_geometry.x(),self.last_geometry.y(),self.init_win_width,self.init_win_height)
+            if self.isMaximized():  # 已经开启最大化，要变为开始大样子
+                # 回复屏幕中央，但是宽度和高度是初始的和自己定义的
+                self.setGeometry(self.original_geometry)    # 回到原始的位置和大小
                 self.snap_layouts = False
-            elif not self.snap_layouts:  # 未开启最大化，要变为最大化
+            elif not self.isMaximized():  # 未开启最大化，要变为最大化
                 self.showMaximized()  # 最大化
+                """最大化之后必须记得及时更新窗口大小"""
+                self.init_win_width = self.width()  # 更新初始窗口大小(不更新会导致边缘判定出问题)
+                self.init_win_height = self.height()  # 更新初始窗口大小(不更新会导致边缘判定出问题)
                 self.snap_layouts = True  # 标志开启了窗口贴边功能
+
 
 
 if __name__ == '__main__':
