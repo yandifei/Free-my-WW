@@ -14,8 +14,8 @@
 """
 # 导包
 # 自己的包
-from UserFeedback import *  # 用户反馈
-from SysInformation import *    # 获取系统信息
+from Free_my_WW_package.UserFeedback import *  # 用户反馈
+from Free_my_WW_package.SysInformation import *    # 获取系统信息
 
 class EnvironmentCheck:
     """检测环境的类

@@ -6,8 +6,8 @@
 import win32api
 import win32con
 # 自己的包
-from UserFeedback import *  # 用户反馈
-from SysInformation import *    # 获取系统信息
+from Free_my_WW_package.UserFeedback import *  # 用户反馈
+from Free_my_WW_package.SysInformation import *    # 获取系统信息
 
 def limit_cursor(left = 0, top = 0, right = get_screen_resolution()[4] , bottom = get_screen_resolution()[5], report = True):
     """鼠标光标范围限制（即使程序结束了，效果还在，但是切屏效果就没了）

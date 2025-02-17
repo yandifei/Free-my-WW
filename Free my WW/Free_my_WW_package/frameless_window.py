@@ -17,7 +17,7 @@ print(f"{os.getcwd()}\\Free_my_WW_package")
 """
 import sys
 import os
-sys.path.append(f"{os.getcwd()}\Free_my_WW_package")  # 添加路径到系统路径里面
+sys.path.append(os.getcwd())    # 把单前路径加到系统路径
 
 from PyQt6.QtWidgets import QApplication, QWidget
 from PyQt6.QtCore import Qt, QPoint, QPointF, QRect  # Qt用来干掉边框
@@ -26,12 +26,6 @@ from PyQt6 import uic
 from Free_my_WW_package.SysInformation import *
 from Free_my_WW_package.UserFeedback import *
 from Free_my_WW_package.SysControl import limit_cursor, release_cursor
-
-try:
-    from 边框重写 import *
-except ImportError:
-    raise ImportError("没有导入后缀ui的文件")
-
 
 class WinInit(QWidget):
     """窗口初始化（当前主显示器屏幕中央）
@@ -194,7 +188,7 @@ class WinInit(QWidget):
             return None # 不继续往下执行
 
         # 窗口边缘缩放
-        if not self.resizing[0] and self.resizing[0] > 0:   # 防止贴边恢复是过度启动边缘监测
+        if not self.resizing[0] and self.snap_layouts > 0:   # 防止贴边恢复是过度启动边缘监测
             # print(self.resizing[0])
             return None # 判断是否开启边缘监测
         elif (event.position().x() >= (self.width() - self.win_control_button_size[0]) and
@@ -281,6 +275,8 @@ class WinInit(QWidget):
         elif event.globalPosition().toPoint().y() == self.mouse_max_y:
             self.setGeometry(self.original_geometry)    # 回到原始的位置和大小
             # 这里就没有必要加窗口贴边开启的标志了，因为这是还原
+            self.init_win_width = self.width()  # 更新初始窗口大小(不更新会导致边缘判定出问题)
+            self.init_win_height = self.height()  # 更新初始窗口大小(不更新会导致边缘判定出问题)
 
     def mouseDoubleClickEvent(self, event):
         """双击最大化/恢复"""
@@ -292,8 +288,6 @@ class WinInit(QWidget):
             elif not self.isMaximized():  # 未开启最大化，要变为最大化
                 self.showMaximized()  # 最大化
                 """最大化之后必须记得及时更新窗口大小"""
-                self.init_win_width = self.width()  # 更新初始窗口大小(不更新会导致边缘判定出问题)
-                self.init_win_height = self.height()  # 更新初始窗口大小(不更新会导致边缘判定出问题)
                 self.snap_layouts = True  # 标志开启了窗口贴边功能
 
 
@@ -302,7 +296,7 @@ if __name__ == '__main__':
     Free_my_WW_app = QApplication(sys.argv)  # 管理控制事件流和设置
     # Free_my_WW_app.setAttribute(Qt.ApplicationAttribute.AA_UseDesktopOpenGL)    # OpenGL加速（图形渲染增强）
     """Free_my_WW_app.setAttribute(Qt.ApplicationAttribute.AA_MouseTracking, True)对每个继承widget的控件都打开鼠标表跟踪"""
-    Free_my_WW = WinInit("./边框重写.ui")  # 创建实例对象
+    Free_my_WW = WinInit("./测试.ui")  # 创建实例对象
 
     # Free_my_WW.window_mouse_pass_through()  # 主窗口鼠标穿透
     # Free_my_WW.top()    # 窗口一直置顶，即使切换应用也还是置顶
