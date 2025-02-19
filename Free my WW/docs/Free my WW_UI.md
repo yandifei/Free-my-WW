@@ -58,8 +58,10 @@ https://www.flaticon.com/search?word=close&type=uicon(这里直接跳转所提�
 ***
 
 
-
-
-
+# 其他功能
+Free_my_WW_app.setAttribute(Qt.ApplicationAttribute.AA_UseDesktopOpenGL)    # OpenGL加速（图形渲染增强）
+"""Free_my_WW_app.setAttribute(Qt.ApplicationAttribute.AA_MouseTracking, True)对每个继承widget的控件都打开鼠标表跟踪"""
+Free_my_WW.window_mouse_pass_through()  # 主窗口鼠标穿透
+Free_my_WW.top()    # 窗口一直置顶，即使切换应用也还是置顶
 
 

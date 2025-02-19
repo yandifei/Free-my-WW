@@ -1,6 +1,8 @@
 # 这个库是用来获取系统信息（windows）的
 # 导包
+import os
 import sys  # 系统包
+import platform # 访问底层平台的标识数据
 # win32api（提供系统接口）、win32gui（图形界面操作）、win32print（打印和设备上下文相关功能）
 import win32con, win32api, win32gui, win32print
 
@@ -25,6 +27,82 @@ def get_operating_system():
     if operating_system == "freebsd":
         operating_system = "FreeBSD"
     return operating_system
+
+def get_login_name():
+    """获得控制终端的用户名
+    返回值：返回通过控制终端进程进行登录的用户名
+    """
+    return os.getlogin()
+
+def get_process_id(father=False):
+    """获得当前的进程ID或父进程ID
+    参数：father，默认False，如果为true则返回父进程
+    返回值：默认返回当前进程ID，如果参数为true则返回父进程ID
+    """
+    if father:
+        return os.getppid()
+    else:
+        return os.getpid()
+
+def change_environment_value(key, value,mod=False):
+    """修改或删除环境变量，我修改了但是设置里面没变
+    参数（都是字符串）mod为True是填好key就行：
+    key ：需要添加的环境变量
+    value ：环境变量的值
+    mod : 默认为False，添加环境变量，为True是删除环境变量
+    """
+    if mod:
+        os.unsetenv(key)
+    else:
+        os.putenv(key, value)
+
+
+
+
+def error(code):
+    """参数code是自定义的错误代码
+    error_code = 2
+    message = os.strerror(error_code)
+    print(f"错误码 {error_code}: {message}")
+    # 输出：错误码 2: No such file or directory
+    """
+    os.strerror(code)
+    pass    # 以后再搞，把报错全变成对应的错误代码和中文错误信息
+
+def get_computer_type():
+    """获得计算机的类型
+    返回值：如：'AMD64' 。 如果该类型无法确定则会返回无法确定该类型。
+    """
+    if platform.machine():
+        return platform.machine()
+    else:
+        return "无法确定该类型"
+
+def get_system_information():
+    """获得系统信息
+    返回一个标识底层平台的字符串，其中带有尽可能多的有用信息。
+    """
+    return platform.platform()
+
+def get_hostname():
+    """获得主机名称（）
+        返回计算机的主机名称（即网络名称,可能不是完整限定名称！）。 如果该值无法确定则会返回一个空字符串。
+    """
+    return platform.node()
+
+def get_cup_name():
+    """获得真实处理器的名称
+    返回（真实的）处理器名称，例如 'Intel64'。
+    如果该值无法确定则将返回“无法获得真实的处理器名称”。
+    """
+    if platform.processor():
+        return platform.processor()
+    else:
+        return "无法获得真实的处理器名称"
+
+def get_python_version():
+    """获取python的版本"""
+    return platform.python_version()
 
 def get_screen_resolution():
     """获得主显示器屏幕的当前分辨率、实际分辨率、可用分辨率、桌面窗口的设备上下文句柄
@@ -74,6 +152,11 @@ def get_scaling_factor():
     return scaling_factor_x, scaling_factor_y
 
 if __name__ == '__main__':
-    get_operating_system()
+    print(get_operating_system())
+    print(get_computer_type())
+    print(get_hostname())
+    print(get_screen_resolution())
     get_screen_resolution()
     get_scaling_factor()
+    # change_environment_value("Test","1",True)
+
