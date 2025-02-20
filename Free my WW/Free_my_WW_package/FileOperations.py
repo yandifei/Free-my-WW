@@ -95,15 +95,28 @@ def remove_file(path):
         else:
             return "文件不存在"
 
-def remove_folder():
-    """递归删除目录
-    
+def remove_folder(path):
+    """递归删除目录，如果删除的目录下面有文件就停止删除
+    如果成功删除了末尾一级目录，removedirs() 会尝试依次删除 path 中提到的每个父目录，直到抛出错误为止
+    参数：
+    path ： 填目录路径（不能填文件的路径，一定要是文件夹的路径）
     """
+    try:
+        os.removedirs(path)
+    except OSError:
+        sys_feedback("路径错误")
 
+def change_name():
+    """修改文件或目录的名字(在linux中文件和目录都是File)
+
+    """
+    try:
+        os.rename()
 
 if __name__ == '__main__':
     # print("当前目录下的所有文件:")
     # for i in select_current_all_files(False):
     #     print(i)
     print(1)
+    remove_folder("B:\\测试\\测试\\测试")
 
