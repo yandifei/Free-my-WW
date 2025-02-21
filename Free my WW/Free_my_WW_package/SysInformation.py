@@ -56,9 +56,6 @@ def change_environment_value(key, value,mod=False):
     else:
         os.putenv(key, value)
 
-
-
-
 def error(code):
     """参数code是自定义的错误代码
     error_code = 2
@@ -150,6 +147,32 @@ def get_scaling_factor():
     scaling_factor_x = int(scaling_factor_x * 100) # 转换为百分制整型
     scaling_factor_y = int(scaling_factor_y * 100)  # 转换为百分制整型
     return scaling_factor_x, scaling_factor_y
+
+def get_cpu_count():
+    """获得系统中逻辑CPU的数量
+    返回值：
+    如果无法获取则为"无法确定"，否则为数字
+    """
+    cpu_count = os.cpu_count()
+    if cpu_count:
+        return cpu_count
+    else:
+        return "无法确定"
+
+def get_process_use_cup_count():
+    """获取当前进程的调用方线程可以使用的逻辑 CPU 数量
+    python:3.13
+    返回值：
+    如果无法获取则为"无法确定"，否则为数字，如果报错就有"无法调用该函数，python需要3.13"
+    """
+    try:
+        process_cpu_count = os.process_cpu_count()
+    except():
+        return "无法调用该函数，python需要3.13"
+    if process_cpu_count:
+        return process_cpu_count
+    else:
+        return "无法确定"
 
 if __name__ == '__main__':
     print(get_operating_system())
