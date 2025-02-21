@@ -4,8 +4,6 @@ show如果是在自定义类之后则有可能出现未知bug
 在未初始化 GUI 前调用 show()	窗口可能无法正确渲染
 将Form对象的窗口布局器（1个）的类名设置为GlobalLayout，意为全局布局器
 """
-import sys
-
 # 去掉原来的边框，直接重写
 # 导包
 """ 添加路径导入自定义包
@@ -17,15 +15,15 @@ package_path = os.path.dirname(package_path)   # 获取上级目录
 sys.path.append(package_path)   # 添加路径到系统路径里面
 print(f"{os.getcwd()}\\Free_my_WW_package")
 """
-import sys
-import os
+# import sys
+# import os
 # sys.path.append(os.getcwd())    # 把单前路径加到系统路径
 # sys.path.append(os.path.dirname(os.getcwd()))    # 把上级路径加到系统路径
 # sys.path.append(os.path.dirname(os.path.dirname(os.getcwd())))    # 把上上级路径加到系统路径
-
+from Free_my_WW_UI.Free_my_WW_UI import Ui_Form   # 导入ui转py文件(需要的类)
 
 from PyQt6.QtWidgets import QApplication, QWidget
-from PyQt6.QtCore import Qt, QPoint, QPointF, QRect, QResource  # Qt用来干掉边框
+from PyQt6.QtCore import Qt, QPoint, QRect  # Qt用来干掉边框
 from PyQt6 import uic
 # 自己的包
 from Free_my_WW_package.SysInformation import *
@@ -42,8 +40,6 @@ class FramelessWindow(QWidget):
     """
     def __init__(self, ui_file_path, edge_size=10,win_control_button_size = (0,0)):
         super().__init__()  # 习惯
-        # 注册资源文件
-        # QResource.registerResource('D:\鸣潮脚本\Free-my-WW\Free my WW\Free_my_WW_UI\images\Free_my_WW_QRC.qrc')
         self.ui_file_path = ui_file_path  # ui文件路径，后缀名不一定是.ui，转为py也可以
         self.ui = None  # 为了后面创建实例对象用的
         self.import_ui()  # 创建ui对象，导入ui
@@ -90,7 +86,8 @@ class FramelessWindow(QWidget):
                 self.ui = Ui_Form()  # 创建UI实例，为了后续控件的调用
                 self.ui.setupUi(self)  # 继承界面的类
             except(SyntaxError, NameError):
-                raise SyntaxError("未能导入该模块，请检查是否在同一目录下")
+                raise SyntaxError("未能导入该模块，请检查是否在同一目录下"
+                                  )
         else:
             raise NameError("输入入的既不是ui文件，也不是ui转py文件")
 

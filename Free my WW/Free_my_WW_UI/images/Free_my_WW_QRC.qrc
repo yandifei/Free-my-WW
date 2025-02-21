@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <RCC>
   <qresource prefix="标题栏">
     <file>窗口恢复.png</file>
@@ -7,6 +6,14 @@
     <file>托盘隐藏.png</file>
     <file>最大化.png</file>
     <file>最小化.png</file>
+  </qresource>
+  <qresource prefix="导航栏">
+    <file>4C声骇.png</file>
+    <file>快捷键.png</file>
+    <file>问题链接.png</file>
+    <file>用户设置.png</file>
+    <file>主页.png</file>
+    <file>状态监控.png</file>
   </qresource>
   <qresource prefix="Logo">
     <file>16X16.ico</file>

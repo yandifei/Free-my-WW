@@ -1,109 +1,68 @@
 import sys
-import platform
-import os
-import site
-import subprocess
-from pprint import pprint
-try:
-    from importlib import metadata
-except ImportError:
-    import importlib_metadata as metadata  # Python 3.7及以下兼容
+import time
+from PyQt6.QtWidgets import QApplication, QMainWindow, QSplashScreen, QLabel, QVBoxLayout, QWidget
+from PyQt6.QtGui import QIcon, QPixmap, QMovie
+from PyQt6.QtCore import Qt, QTimer
 
-def get_python_info():
-    """返回当前 Python 环境的完整信息"""
-    info = {}
+def main():
+    # 创建应用实例
+    app = QApplication(sys.argv)
 
-    # 1. 版本信息
-    version_info = {
-        "python_version": sys.version,
-        "version": sys.version_info,
-        "implementation": platform.python_implementation(),
-        "compiler": platform.python_compiler(),
-        "build_info": {
-            "build_no": sys.version_info[2],
-            "build_date": sys.version_info[3],
-            "build_platform": platform.platform()
-        }
-    }
-    info["version"] = version_info
+    # ----------------------------
+    # 1. 创建启动画面
+    # ----------------------------
+    # 方式1：静态图片（支持PNG/JPG）
+    splash_pix = QPixmap("splash_icon.png")  # 替换为你的图片路径
+    # 方式2：动态GIF（加载动画）
+    # splash_movie = QMovie("loading.gif")  # 动态加载图标
 
-    # 2. 路径信息
-    path_info = {
-        "executable": sys.executable,
-        "prefix": sys.prefix,
-        "base_prefix": sys.base_prefix,
-        "exec_prefix": sys.exec_prefix,
-        "base_exec_prefix": sys.base_exec_prefix,
-        "path": sys.path,
-        "site_packages": site.getsitepackages(),
-        "user_site": site.getusersitepackages()
-    }
-    info["paths"] = path_info
+    # 创建启动窗口（设置置顶）
+    splash = QSplashScreen(splash_pix, Qt.WindowType.WindowStaysOnTopHint)
+    splash.setWindowIcon(QIcon("app_icon.ico"))  # 设置任务栏图标
 
-    # 3. 环境变量
-    env_vars = {
-        "python_env_vars": {k: v for k, v in os.environ.items() if k.startswith('PYTHON')},
-        "path_env": os.environ.get('PATH', '').split(os.pathsep)
-    }
-    info["environment"] = env_vars
+    # 添加自定义文字（可选）
+    splash.showMessage(
+        "正在加载...",
+        alignment=Qt.AlignmentFlag.AlignBottom | Qt.AlignmentFlag.AlignHCenter,
+        color=Qt.GlobalColor.white
+    )
 
-    # 4. 安装的包（需要安装 setuptools）
-    try:
-        installed_packages = [
-            {
-                "name": dist.metadata["Name"],
-                "version": dist.version,
-                "location": dist.locate_file('')
-            }
-            for dist in metadata.distributions()
-        ]
-        info["packages"] = installed_packages
-    except Exception as e:
-        info["packages_error"] = str(e)
+    # 方式2：启动动态GIF
+    # splash = QSplashScreen()
+    # splash.setMovie(splash_movie)
+    # splash_movie.start()
 
-    # 5. 系统信息
-    system_info = {
-        "os": {
-            "name": os.name,
-            "system": platform.system(),
-            "release": platform.release(),
-            "version": platform.version(),
-            "machine": platform.machine(),
-            "processor": platform.processor()
-        },
-        "user": {
-            "login": os.getlogin(),
-            "home": os.path.expanduser("~"),
-            "uid": os.getuid(),
-            "gid": os.getgid()
-        }
-    }
-    info["system"] = system_info
+    splash.show()
 
-    # 6. 运行时信息
-    runtime_info = {
-        "byteorder": sys.byteorder,
-        "api_version": sys.api_version,
-        "maxsize": sys.maxsize,
-        "thread_info": sys.thread_info,
-        "argv": sys.argv,
-        "std_encoding": {
-            "stdin": sys.stdin.encoding,
-            "stdout": sys.stdout.encoding,
-            "stderr": sys.stderr.encoding
-        }
-    }
-    info["runtime"] = runtime_info
+    # ----------------------------
+    # 2. 模拟耗时初始化操作
+    # ----------------------------
+    # 例如：加载数据、初始化资源等
+    time.sleep(2)  # 实际开发中替换为真实代码
 
-    return info
+    # ----------------------------
+    # 3. 创建并显示主窗口
+    # ----------------------------
+    class MainWindow(QMainWindow):
+        def __init__(self):
+            super().__init__()
+            self.setWindowTitle("主窗口")
+            self.setGeometry(100, 100, 400, 300)
+            # 添加一个示例组件
+            label = QLabel("欢迎使用！", self)
+            label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+    window = MainWindow()
+    window.show()
+
+    # ----------------------------
+    # 4. 关闭启动画面
+    # ----------------------------
+    splash.finish(window)  # 主窗口显示后关闭启动画面
+    # 方式2：动态GIF需额外停止动画
+    # splash_movie.stop()
+
+    sys.exit(app.exec())
 
 if __name__ == "__main__":
-    # 使用示例
-    python_info = get_python_info()
-    print("Python 完整信息:")
-    pprint(python_info)
-
-    # 获取 requirements.txt 格式的包列表
-    print("\n安装的包列表:")
-    for pkg in python_info.get('packages', []):
-        print(f"{pkg['name']}=={pkg['version']}")
+    main()
