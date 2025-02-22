@@ -366,17 +366,295 @@ QPushButton:pressed {
            <property name="mouseTracking">
             <bool>false</bool>
            </property>
+           <property name="toolTip">
+            <string/>
+           </property>
+           <property name="whatsThis">
+            <string/>
+           </property>
+           <property name="tabPosition">
+            <enum>QTabWidget::North</enum>
+           </property>
+           <property name="tabShape">
+            <enum>QTabWidget::Rounded</enum>
+           </property>
            <property name="currentIndex">
             <number>0</number>
            </property>
-           <widget class="QWidget" name="tab">
+           <property name="iconSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="documentMode">
+            <bool>false</bool>
+           </property>
+           <property name="movable">
+            <bool>false</bool>
+           </property>
+           <property name="tabBarAutoHide">
+            <bool>false</bool>
+           </property>
+           <widget class="QWidget" name="Home">
+            <attribute name="icon">
+             <iconset resource="images/Free_my_WW_QRC.qrc">
+              <normaloff>:/导航栏/主页.png</normaloff>:/导航栏/主页.png</iconset>
+            </attribute>
             <attribute name="title">
-             <string>Tab 1</string>
+             <string/>
+            </attribute>
+            <attribute name="toolTip">
+             <string>主页</string>
+            </attribute>
+            <layout class="QGridLayout" name="gridLayout" rowstretch="10,0" columnstretch="1,10">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item row="1" column="1">
+              <layout class="QHBoxLayout" name="horizontalLayout">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QPushButton" name="pushButton_2">
+                 <property name="text">
+                  <string>游戏启动</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton">
+                 <property name="text">
+                  <string>体力日常</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_3">
+                 <property name="text">
+                  <string>4C声骇</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="0" column="1">
+              <widget class="QWidget" name="widget" native="true">
+               <property name="maximumSize">
+                <size>
+                 <width>1000</width>
+                 <height>387</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-image: url(:/主页/守岸人.png);</string>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_3">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+               </layout>
+              </widget>
+             </item>
+             <item row="0" column="0" rowspan="2">
+              <widget class="QScrollArea" name="scrollArea">
+               <property name="autoFillBackground">
+                <bool>false</bool>
+               </property>
+               <property name="widgetResizable">
+                <bool>true</bool>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <widget class="QWidget" name="scrollAreaWidgetContents_2">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>252</width>
+                  <height>615</height>
+                 </rect>
+                </property>
+                <widget class="QPushButton" name="pushButton_4">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>49</y>
+                   <width>75</width>
+                   <height>23</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>截图测试</string>
+                 </property>
+                </widget>
+                <widget class="QPushButton" name="pushButton_5">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>131</y>
+                   <width>75</width>
+                   <height>23</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>日志查询</string>
+                 </property>
+                </widget>
+                <widget class="QPushButton" name="pushButton_6">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>213</y>
+                   <width>75</width>
+                   <height>23</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>用户配置</string>
+                 </property>
+                </widget>
+                <widget class="QPushButton" name="pushButton_7">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>295</y>
+                   <width>75</width>
+                   <height>23</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>样式改变</string>
+                 </property>
+                </widget>
+                <widget class="QPushButton" name="pushButton_8">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>377</y>
+                   <width>75</width>
+                   <height>23</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>说明文档</string>
+                 </property>
+                </widget>
+                <widget class="QPushButton" name="pushButton_9">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>459</y>
+                   <width>75</width>
+                   <height>23</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>问题咨询</string>
+                 </property>
+                </widget>
+                <widget class="QPushButton" name="pushButton_10">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>541</y>
+                   <width>75</width>
+                   <height>23</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>战斗撰写</string>
+                 </property>
+                </widget>
+               </widget>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="Cost">
+            <attribute name="icon">
+             <iconset resource="images/Free_my_WW_QRC.qrc">
+              <normaloff>:/导航栏/4C声骇.png</normaloff>:/导航栏/4C声骇.png</iconset>
+            </attribute>
+            <attribute name="title">
+             <string/>
+            </attribute>
+            <attribute name="toolTip">
+             <string>4C声骇</string>
+            </attribute>
+           </widget>
+           <widget class="QWidget" name="StatusMonitor">
+            <attribute name="icon">
+             <iconset resource="images/Free_my_WW_QRC.qrc">
+              <normaloff>:/导航栏/状态监控.png</normaloff>:/导航栏/状态监控.png</iconset>
+            </attribute>
+            <attribute name="title">
+             <string/>
+            </attribute>
+            <attribute name="toolTip">
+             <string>状态监测</string>
             </attribute>
            </widget>
            <widget class="QWidget" name="tab_2">
+            <attribute name="icon">
+             <iconset resource="images/Free_my_WW_QRC.qrc">
+              <normaloff>:/导航栏/快捷键.png</normaloff>:/导航栏/快捷键.png</iconset>
+            </attribute>
             <attribute name="title">
-             <string>Tab 2</string>
+             <string/>
+            </attribute>
+            <attribute name="toolTip">
+             <string>快捷键</string>
+            </attribute>
+           </widget>
+           <widget class="QWidget" name="tab_3">
+            <attribute name="icon">
+             <iconset resource="images/Free_my_WW_QRC.qrc">
+              <normaloff>:/导航栏/问题链接.png</normaloff>:/导航栏/问题链接.png</iconset>
+            </attribute>
+            <attribute name="title">
+             <string/>
+            </attribute>
+            <attribute name="toolTip">
+             <string>问题链接</string>
+            </attribute>
+           </widget>
+           <widget class="QWidget" name="tab">
+            <attribute name="icon">
+             <iconset resource="images/Free_my_WW_QRC.qrc">
+              <normaloff>:/导航栏/用户设置.png</normaloff>:/导航栏/用户设置.png</iconset>
+            </attribute>
+            <attribute name="title">
+             <string/>
+            </attribute>
+            <attribute name="toolTip">
+             <string>用户设置</string>
             </attribute>
            </widget>
           </widget>

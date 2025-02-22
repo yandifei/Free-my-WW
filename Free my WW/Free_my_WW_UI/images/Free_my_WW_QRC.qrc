@@ -7,6 +7,20 @@
     <file>最大化.png</file>
     <file>最小化.png</file>
   </qresource>
+  <qresource prefix="主页">
+    <file>守岸人.png</file>
+  </qresource>
+  <qresource prefix="背景">
+    <file>安可1.jpg</file>
+    <file>安可2.jpg</file>
+    <file>安可3.jpg</file>
+    <file>维里奈1.jpg</file>
+    <file>维里奈2.jpg</file>
+    <file>维里奈3.jpg</file>
+    <file>釉糊1.jpg</file>
+    <file>釉糊2.jpg</file>
+    <file>釉糊3.jpg</file>
+  </qresource>
   <qresource prefix="导航栏">
     <file>4C声骇.png</file>
     <file>快捷键.png</file>
