@@ -4,3 +4,13 @@
 后台截图、处理图像
 """
 # 导包
+
+
+
+
+
+class Gamer:
+    def __init__(self):
+        super().__init__(None)  # 超继承为空
+
+    # def get_hwnd(self):
