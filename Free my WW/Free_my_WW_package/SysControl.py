@@ -244,19 +244,23 @@ def get_win_attribute(hwnd):
     返回值：
     win_attribute ： 字典
     """
-    win_attribute = {}   # 设置一个字典来放属性
-    win_attribute["样式"] = win32gui.GetWindowLong(hwnd, win32con.GWL_STYLE)    # 样式
-    win_attribute["扩展样式"] = win32gui.GetWindowLong(hwnd, win32con.GWL_EXSTYLE)  # 扩展样式
-    win_attribute["窗口的消息处理函数"] = win32gui.GetWindowLong(hwnd, win32con.GWL_WNDPROC)  # 窗口的过程（即窗口的消息处理函数）
-    win_attribute["与窗口关联的实例句柄"] = win32gui.GetWindowLong(hwnd, win32con.GWL_HINSTANCE)    # 与窗口关联的实例句柄
-    win_attribute["如果窗口是子窗口，则获取父窗口的句柄"] = win32gui.GetWindowLong(hwnd, win32con.GWL_HWNDPARENT)   #  如果窗口是子窗口，则获取父窗口的句柄
-    win_attribute["窗口的标识符"] = win32gui.GetWindowLong(hwnd, win32con.GWL_ID)   #  窗口的标识符（如果窗口是子窗口）
+    win_attribute = {"样式": win32gui.GetWindowLong(hwnd, win32con.GWL_STYLE),
+                     "扩展样式": win32gui.GetWindowLong(hwnd, win32con.GWL_EXSTYLE),
+                     "窗口的消息处理函数": win32gui.GetWindowLong(hwnd, win32con.GWL_WNDPROC),
+                     "与窗口关联的实例句柄": win32gui.GetWindowLong(hwnd, win32con.GWL_HINSTANCE),
+                     "如果窗口是子窗口，则获取父窗口的句柄": win32gui.GetWindowLong(hwnd, win32con.GWL_HWNDPARENT),
+                     "窗口的标识符": win32gui.GetWindowLong(hwnd, win32con.GWL_ID)}
     return win_attribute
 
+# 窗口操作类(默认输入的句有效，如果无效则报错)
+def flash_win(hwnd,bitwise_inversion=True):
+    """使窗口闪烁或闪烁加颜色反转闪烁（这个函数通常用于当应用程序需要用户注意时，比如有新消息到达或者某个任务完成。）
+    参数：
+    hwnd ： 需要闪烁的窗口的句柄
+    bitwise_inversion : 窗口颜色反转，默认True
+    """
+    win32gui.FlashWindow(hwnd, bitwise_inversion)
 
-
-
-# 窗口操作类
 def change_hwnd_title(hwnd, new_title):
     """改变窗口句柄标题
     参数：
@@ -297,13 +301,116 @@ def focus_to_window(hwnd):
     """
     win32gui.SetFocus(hwnd)
 
-def no_move_window(hwnd):
-    """固定窗口当前的位置"""
-    win32con.SWP_NOMOVE(hwnd)   # 保持窗口的当前位置（忽略 x 和 y 参数）
+def change_win_geometry(hwnd, mod=0):
+    """很厉害但是好像没用"""
+    """Z 顺序常量
+    HWND_TOP	0	将窗口置于 Z 顺序顶部（但不强制置顶）。
+    HWND_BOTTOM	1	将窗口置于 Z 顺序底部（可能被其他窗口覆盖）。
+    HWND_TOPMOST	-1	强制窗口置顶（即使失去焦点也保持在最前）。
+    HWND_NOTOPMOST	-2	取消窗口置顶状态，恢复到正常 Z 顺序。
+    标志常量
+    SWP_NOSIZE	0x0001	保持窗口当前尺寸，忽略 cx 和 cy 参数。
+    SWP_NOMOVE	0x0002	保持窗口当前位置，忽略 x 和 y 参数。
+    SWP_NOZORDER	0x0004	保持窗口当前 Z 顺序，忽略 hWndInsertAfter 参数。
+    SWP_SHOWWINDOW	0x0040	显示窗口（如果窗口被隐藏）。"""
+    win32_flags = None  # 用来存放顺序常量和标志常量（默认添加不移动位置）
+    if mod == 0:
+        win32_flags = win32con.SWP_NOSIZE | win32con.SWP_NOZORDER | win32con.SWP_NOMOVE # 不调整大小和层级
+    elif mod == 1:
+        win32_flags = win32con.SWP_NOSIZE | win32con.SWP_NOMOVE   # 不调大小
+    elif mod == 2:
+        win32_flags = win32con.SWP_NOZORDER | win32con.SWP_NOMOVE # 不调整层级
+    win32gui.SetWindowPos(hwnd, win32con.HWND_TOP, 0, 0, 0, 0, win32_flags)
 
-def no_size_window(hwnd):
-    """固定当前窗口的大小"""
-    win32con.SWP_NOSIZE(hwnd)   # 保持窗口的当前大小
+def set_win_geometry(hwnd, x, y, width, height,repaint=True):
+    """设置窗口的大小和位置(几何)
+    参数(窗口大小是有默认限制的，超过则为窗口默认的最大或最小)：
+    hwnd ： 窗口的句柄
+    x ： 窗口左上角的x坐标
+    y ： 窗口左上角的y坐标
+    width ： 设置窗口的宽度
+    height ： 设置窗口的高度
+    repaint : 重新绘制窗口，默认打开
+    """
+    win32gui.MoveWindow(hwnd, x, y, width, height, repaint)
+
+def move_win(hwnd, x, y, repaint=True):
+    """移动窗口到指定位置
+    hwnd ： 窗口的句柄
+    x ： 窗口左上角的x坐标
+    y ： 窗口左上角的y坐标
+    repaint : 重新绘制窗口，默认打开
+    """
+    size = win32gui.GetWindowRect(hwnd) # 获取窗口左上角和右下角的坐标
+    width, height = size[2] - size[0], size[3] - size[1]    # 计算窗口的大小
+    win32gui.MoveWindow(hwnd, x, y, width, height, repaint)
+
+def set_win_size(hwnd, width, height, repaint=True):
+    """改变窗口的大小（坐标保持在左上角）
+    hwnd ： 窗口的句柄
+    width ： 设置窗口的宽度
+    height ： 设置窗口的高度
+    repaint : 重新绘制窗口，默认打开
+    """
+    point = win32gui.GetWindowRect(hwnd) # 获取窗口左上角和右下角的坐标
+    win32gui.MoveWindow(hwnd, point[0], point[1], width, height, repaint)
+
+def remove_max_mix_size(hwnd,mod=0):
+    """去除窗口的最大化和最小化以及大小缩放（如果标题栏是自己重写没有与win标题栏有关的就无法影响）
+    hwnd ： 窗口的句柄
+    mod : 1为仅去除最大化，2为仅去除最小化，3为仅去除窗口边缘拉伸，默认为0（都执行）
+    返回值：
+    如果窗口句柄无效就会报错
+    """
+    # 获取当前窗口样式
+    new_style = None    # 用来存放新的样式
+    current_style = win32gui.GetWindowLong(hwnd, win32con.GWL_STYLE)
+    # 移除可调整大小、最大化、最小化
+    if mod == 0:
+        new_style = current_style & ~win32con.WS_THICKFRAME & ~win32con.WS_MAXIMIZEBOX & ~win32con.WS_MINIMIZEBOX
+    elif mod == 1:
+        new_style = current_style & ~win32con.WS_MAXIMIZEBOX    # 最大化
+    elif mod == 2:
+        new_style = current_style & ~win32con.WS_MINIMIZEBOX    # 最小化
+    elif mod == 3:
+        new_style = current_style & ~win32con.WS_THICKFRAME     # 去除边缘缩放
+    win32gui.SetWindowLong(hwnd, win32con.GWL_STYLE, new_style)     # 应用新样式
+    """强制窗口重绘
+        SWP_NOMOVE保持窗口当前位置不变，忽略 SetWindowPos 函数中传入的 x 和 y 坐标参数。
+        SWP_NOSIZE保持窗口当前尺寸不变，忽略 SetWindowPos 函数中传入的 cx 和 cy（宽度和高度）参数。
+        SWP_FRAMECHANGED强制窗口重新计算非客户区（Non-Client Area，如标题栏、边框等）
+        """
+    win32gui.SetWindowPos(
+        hwnd,
+        win32con.HWND_TOP,
+        0, 0, 0, 0,
+        win32con.SWP_NOMOVE | win32con.SWP_NOSIZE | win32con.SWP_FRAMECHANGED
+    )
+
+def top_win(hwnd):
+    """将窗口置顶
+    hwnd ： 窗口的句柄
+    """
+    win32gui.SetWindowPos(
+        hwnd,
+        win32con.HWND_TOPMOST,  # 置顶层
+        0, 0, 0, 0,
+        win32con.SWP_NOMOVE | win32con.SWP_NOSIZE
+    )
+
+def cancel_top_win(hwnd):
+    """取消窗口置顶
+    hwnd ： 窗口的句柄
+    """
+    win32gui.SetWindowPos(
+        hwnd,
+        win32con.HWND_NOTOPMOST,  # 取消置顶
+        0, 0, 0, 0,
+        win32con.SWP_NOMOVE | win32con.SWP_NOSIZE
+    )
+
+
+
 
 if __name__ == "__main__":
     # 限制鼠标移动范围
@@ -313,8 +420,8 @@ if __name__ == "__main__":
     print(f"编译器的句柄：{find_hwnd('SunAwtFrame')}")
     # print(find_hwnd_ex(0,0,"Qt5QWindowIcon", "鸣潮"))
     print(f"当前窗口的句柄：{find_current_hwnd()}")
-    print(mouse_find_hwnd(682,243))
-    print(mouse_fine_child_hwnd(682,243))
+    # print(mouse_find_hwnd(682,243))
+    # print(mouse_fine_child_hwnd(682,243))
     # print(find_all_child_hwnd(2819532))
     # print(find_parent_hwnd(0))
     # print(get_win_size(2819532))
@@ -324,8 +431,13 @@ if __name__ == "__main__":
     # print(is_use_hwnd(2819532))
     # print(is_min(5440130))
     # print(is_visible(2819532))
-    # print(get_win_attribute(2819532))
+    # print(f"窗口状态：{get_win_attribute(328824)}")
+    # flash_win(393976)
     # change_hwnd_title(5440130,"hello world")
     # hide_window(4064822)
     # show_window(4064822)
-    no_move_window(7996754)
+    # set_win_geometry(852606,0,0,1000,1000)
+    # move_win(263116,0,0)
+    # set_win_size(263116,1000,1000)
+    # remove_max_mix_size(328824,0)
+    fixed_size_zored(1115748)
