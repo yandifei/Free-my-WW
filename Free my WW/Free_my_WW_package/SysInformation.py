@@ -426,6 +426,36 @@ def get_dif_win_scaling_factor(operation_hwnd,sync_hwnd):
     scaling_factor = (size[2] - size[0]) / (size2[2] - size2[0])
     return scaling_factor
 
+def change_to_client_coordinates(hwnd,screen_x, screen_y):
+    """把屏幕坐标转换为客户端坐标（应用窗口的坐标）
+    参数：
+    hwnd ： 窗口句柄
+    screen_x : 屏幕的横坐标
+    screen_y : 屏幕的纵坐标
+    返回值：
+    client_x : 应用窗口的横坐标
+    client_y : 应用窗口的纵坐标
+    """
+    if not hwnd:
+        raise ValueError("输入的句柄无效")
+    client_x, client_y = win32gui.ScreenToClient(hwnd, (screen_x, screen_y))
+    return client_x, client_y
+
+def change_to_screen_coordinates(hwnd, client_x, client_y):
+    """把客户端坐标（应用窗口的坐标）转换为屏幕坐标
+    参数：
+    hwnd ： 窗口句柄
+    client_x : 应用窗口的横坐标
+    client_y : 应用窗口的纵坐标
+    返回值：
+    screen_x : 屏幕的横坐标
+    screen_y : 屏幕的纵坐标
+    """
+    if not hwnd:
+        raise ValueError("输入的句柄无效")
+    screen_x, screen_y = win32gui.ClientToScreen(hwnd, (client_x, client_y))
+    return screen_x, screen_y
+
 if __name__ == '__main__':
     print(get_operating_system())
     print(get_computer_type())
@@ -440,4 +470,3 @@ if __name__ == '__main__':
     find_all_child_hwnd(1771326)
     # print(find_hwnd_ex(0,0,"Qt5QWindowIcon", "鸣潮"))
     find_parent_hwnd(1246766)
-    get_win_title
