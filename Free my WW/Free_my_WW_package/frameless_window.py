@@ -26,9 +26,9 @@ from PyQt6.QtWidgets import QApplication, QWidget
 from PyQt6.QtCore import Qt, QPoint, QRect  # Qt用来干掉边框
 from PyQt6 import uic
 # 自己的包
-from Free_my_WW_package.SysInformation import *
+from Free_my_WW_package.SystemControl import *
 from Free_my_WW_package.UserFeedback import *
-from Free_my_WW_package.SysControl import limit_cursor, release_cursor
+from Free_my_WW_package.ApplicationControl import limit_cursor, release_cursor
 
 class FramelessWindow(QWidget):
     """窗口初始化（当前主显示器屏幕中央）

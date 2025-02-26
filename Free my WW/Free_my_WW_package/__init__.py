@@ -7,5 +7,5 @@
 # from Free_my_WW_package.UI_design import *              # 界面连接
 
 # 定义导出的模块列表（可选）
-__all__ = ["UserFeedback", "EnvironmentCheck", "SysInformation", "SysControl", "frameless_window", "UI_design"]
+__all__ = ["UserFeedback", "EnvironmentCheck", "SystemControl.py", "ApplicationControl.py", "frameless_window", "UI_design"]
 __author__ = "yandifei"
