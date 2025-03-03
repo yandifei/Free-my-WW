@@ -623,7 +623,7 @@ if __name__ == "__main__":
     # print(get_win_classname_title(1900624))
     # print(is_hwnd(1900624))
     # print(is_use_hwnd(1900624))
-    print(is_not_responding(198802))
+    # print(is_not_responding(329526))
     # print(find_hwnd_ex(1900624, 0))
     # print(mouse_find_hwnd(932,285))
     # print(mouse_fine_child_hwnd(932,285))
