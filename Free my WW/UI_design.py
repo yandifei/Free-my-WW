@@ -36,6 +36,9 @@ class Free_my_WW_ui(FramelessWindow):
         # self.min_to_sys.setToolTip("text")
         self.ui.SystemTray.clicked.connect(self.system_tray)    # 最小化到系统托盘
         self.ui.HideToWindow.clicked.connect(self.hide_win) # 窗口隐藏（不显示系统托盘，只能在任务管理器里面找到）
+        # self.free_my_ww_hwnd = self.print_free_my_ww_hwnd()  # 获得并打印窗口句柄
+        print(f"当前的窗口句柄:{int(self.winId())}")  # 获取整数句柄
+
 
         """++++++++++++++++++++++++++++++++++开始真正的主界面设计+++++++++++++++++++++++++++++++++++++++++++++++"""
         # append_style = self.styleSheet() + """
