@@ -2,9 +2,9 @@
 1. 获取窗口的属性（句柄、类名、标题、样式），不同窗口的比例、客户端（窗口）坐标与屏幕坐标相互转换
 2. 对窗口进行操作（放大、缩小、隐藏、去标题栏等等）
 """
-import win32con
 # 导包
-import win32gui, win32api
+import win32gui, win32api,win32con
+import ctypes   # 为了判断窗口是否是未响应的状态
 # 自己的包
 from Free_my_WW_package.UserFeedback import *  # 用户反馈
 from Free_my_WW_package.SystemControl import *    # 获取系统信息
@@ -121,6 +121,15 @@ def is_use_hwnd(hwnd):
     if not hwnd:
         raise ValueError("输入的句柄无效")
     return bool(win32gui.IsWindowEnabled(hwnd))
+
+def is_not_responding(hwnd):
+    """检测窗口是否无响应（窗口即为UI无响应是资源未分配的问题，进程不好检测）
+    参数：
+    hwnd ： 需要判断的窗口句柄
+    返回值：
+    布尔值（True或False）
+    """
+    return bool(ctypes.WinDLL('user32').IsHungAppWindow(hwnd))
 
 def find_hwnd_ex(parent_hwnd,child_hwnd,classname=None, title=None):
     """指定父窗口的子窗口 中查找符合类名和窗口标题的子窗口句柄。常用于定位嵌套的控件（如按钮、输入框等）。
@@ -614,6 +623,7 @@ if __name__ == "__main__":
     # print(get_win_classname_title(1900624))
     # print(is_hwnd(1900624))
     # print(is_use_hwnd(1900624))
+    print(is_not_responding(198802))
     # print(find_hwnd_ex(1900624, 0))
     # print(mouse_find_hwnd(932,285))
     # print(mouse_fine_child_hwnd(932,285))
