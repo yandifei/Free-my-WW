@@ -2,6 +2,8 @@
 1. 获取窗口的属性（句柄、类名、标题、样式），不同窗口的比例、客户端（窗口）坐标与屏幕坐标相互转换
 2. 对窗口进行操作（放大、缩小、隐藏、去标题栏等等）
 """
+import time
+
 # 导包
 import win32gui, win32api,win32con
 import ctypes   # 为了判断窗口是否是未响应的状态
@@ -442,7 +444,7 @@ def focus_to_current_window(hwnd):
 
 def focus_to_window(hwnd):
     """把焦点设置在窗口或控件上，始终置顶的监控窗口
-    核心作用：将窗口调整到 Z 序的顶部（即窗口堆叠顺序的最前面），但不保证激活窗口或获得焦点。
+   Z心作用：将窗口调整到 Z 序的顶部（即窗口堆叠顺序的最前面），但不保证激活窗口或获得焦点。
     如果窗口处于最小化状态，会尝试恢复窗口到正常显示状态。
     参数：
     hwnd ： 窗口或控件的句柄
@@ -609,13 +611,13 @@ def change_win_geometry(hwnd, mod=0):
 if __name__ == "__main__":
     from time import sleep  # 测试用的
     # 限制鼠标移动范围
-    limit_cursor(report=False)
+    # limit_cursor(report=False)
     # 释放鼠标限制
-    release_cursor(False)
+    # release_cursor(False)
     """窗口句柄测试"""
     print(f"当前窗口的句柄：{find_current_hwnd()}")
     print(f"pycharm(标题SunAwtFrame)的句柄：{find_hwnd('SunAwtFrame')}")
-    # print(find_all_child_hwnd(1771326))
+    # print(find_all_child_hwnd(3213804))
     # print(find_hwnd_ex(0,0,"Qt5QWindowIcon", "鸣潮"))
     # find_parent_hwnd(1246766)
     # print(get_win_classname(1900624))
@@ -657,3 +659,16 @@ if __name__ == "__main__":
     # remove_caption(3999848)
     # restore_caption(3999848)
     # change_win_geometry(3999848, mod=0)
+
+
+    # QQ句柄测试
+    # time.sleep(2)
+    # qq_hwnd = find_hwnd("Chrome_WidgetWin_1", "鸣潮想睡觉")
+    # qq_child_hwnd = find_all_child_hwnd(qq_hwnd)
+    # print(f"QQ聊天框的窗口子句柄:{qq_child_hwnd}")
+    # print(f"窗口的标题和类名:{get_win_classname_title(qq_child_hwnd[0])}")
+    # print(f"窗口的标题和类名:{get_win_classname_title(qq_child_hwnd[1])}")
+    print(f"窗口的标题和类名:{get_win_classname_title(6632)}")
+
+
+
